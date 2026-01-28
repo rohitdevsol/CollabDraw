@@ -62,8 +62,9 @@ app.post("/signup", async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(400).json({
-      error: "Error creating the user",
+    res.status(500).json({
+      error: "error creating the user",
+      debug: error instanceof Error ? error.message : error,
     });
   }
 });
