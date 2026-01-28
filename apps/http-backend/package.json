@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "build": "tsc",
-    "start": "pnpm db:migrate && node dist/index.js"
+    "start": "cd /app && pnpm db:migrate && node apps/http-backend/dist/index.js"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*"
