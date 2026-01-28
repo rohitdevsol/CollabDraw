@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://collab-draw-alpha.vercel.app",
     credentials: true,
   }),
 );
@@ -314,17 +314,14 @@ app.listen(3000, () => {
   console.log("Server started listening on port 3000");
   cron.schedule("*/14 * * * *", async () => {
     try {
-      console.log("⏰ Running internal health cron...");
+      console.log(" Running internal health cron...");
 
-      // DB ping
       await prisma.$queryRaw`SELECT 1`;
+      //   await axios.get("http://localhost:" + 3000 + "/health");
 
-      // Self ping (optional)
-      await axios.get("http://localhost:" + 3000 + "/health");
-
-      console.log("✅ Health + DB ping success");
+      console.log(" Health + DB ping success");
     } catch (err) {
-      console.error("❌ Cron failed:", err);
+      console.error(" Cron failed:", err);
     }
   });
 });
